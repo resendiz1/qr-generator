@@ -4,6 +4,7 @@
   var HERO_TEXT = "https://resendiz1.github.io/juanpancho-s/";
   var MAX_LENGTH = 2000;
   var DEFAULT_EMPTY_MESSAGE = "Escribe un texto o elige un ejemplo para ver tu QR aquí.";
+  var THEME_KEY = "jp-theme";
 
   var EXAMPLES = {
     url: "https://resendiz1.github.io/juanpancho-s/",
@@ -49,8 +50,12 @@
     downloadPng: document.getElementById("downloadPng"),
     downloadSvg: document.getElementById("downloadSvg"),
     copyQr: document.getElementById("copyQr"),
-    heroQr: document.getElementById("heroQr")
+    heroQr: document.getElementById("heroQr"),
+    themeToggle: document.getElementById("themeToggle")
   };
+
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  var systemThemeQuery = window.matchMedia("(prefers-color-scheme: light)");
 
   var generated = false;
   var currentText = "";
@@ -89,6 +94,53 @@
     var lighter = Math.max(a, b);
     var darker = Math.min(a, b);
     return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  function getStoredTheme() {
+    try {
+      var stored = window.localStorage.getItem(THEME_KEY);
+      return stored === "light" || stored === "dark" ? stored : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function getPreferredTheme() {
+    return getStoredTheme() || (systemThemeQuery.matches ? "light" : "dark");
+  }
+
+  function syncThemeMeta(theme) {
+    if (themeMeta) {
+      themeMeta.setAttribute("content", theme === "light" ? "#F7F1E1" : "#0B0D0E");
+    }
+  }
+
+  function updateThemeButton(theme) {
+    if (!els.themeToggle) {
+      return;
+    }
+    var isLight = theme === "light";
+    var label = isLight ? "Cambiar a tema oscuro" : "Cambiar a tema claro";
+    els.themeToggle.setAttribute("aria-pressed", String(isLight));
+    els.themeToggle.setAttribute("aria-label", label);
+    els.themeToggle.setAttribute("title", label);
+  }
+
+  function applyTheme(theme, persist) {
+    var next = theme === "light" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    updateThemeButton(next);
+    syncThemeMeta(next);
+    if (persist) {
+      try {
+        window.localStorage.setItem(THEME_KEY, next);
+      } catch (error) {}
+    }
+  }
+
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+    applyTheme(current === "light" ? "dark" : "light", true);
   }
 
   function getOptions() {
@@ -455,6 +507,20 @@
       }
     });
   });
+
+  applyTheme(getPreferredTheme(), false);
+
+  if (els.themeToggle) {
+    els.themeToggle.addEventListener("click", toggleTheme);
+  }
+
+  if (typeof systemThemeQuery.addEventListener === "function") {
+    systemThemeQuery.addEventListener("change", function (event) {
+      if (!getStoredTheme()) {
+        applyTheme(event.matches ? "light" : "dark", false);
+      }
+    });
+  }
 
   updateOutputs();
   updateContrastNotice();
