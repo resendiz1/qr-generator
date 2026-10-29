@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JuanPancho's QR — Generador de códigos QR</title>
+  <meta name="description" content="Genera códigos QR a partir de cualquier texto o enlace. Personaliza tamaño, colores y corrección de errores, y descarga en PNG o SVG. Una herramienta de JuanPancho's.">
+  <meta name="theme-color" content="#0B0D0E">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="JuanPancho's QR — inicio">
+        <svg class="logo-mark" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <rect x="16" y="14" width="88" height="56" rx="12" stroke="currentColor" stroke-width="8"/>
+          <path d="M60 70v14M44 92h32" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+          <path d="M40 32l12 10-12 10" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M58 30l8 24" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+          <path d="M80 32l-12 10 12 10" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-name"><span class="lt">&lt;</span>JuanPancho's<span class="rt">/&gt;</span></span>
+        <span class="brand-tag">QR</span>
+      </a>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#generador">Generador</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#usos">Usos</a>
+        <a href="#familia">Familia</a>
+      </nav>
+      <a class="btn btn-gold nav-cta" href="https://resendiz1.github.io/juanpancho-s/">Sitio principal</a>
+      <button class="nav-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="offcanvas offcanvas-end mobile-menu" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header">
+      <span class="mobile-menu-title" id="mobileMenuLabel"><span class="lt">&lt;</span>JuanPancho's<span class="rt"> QR /&gt;</span></span>
+      <button class="menu-close" type="button" data-bs-dismiss="offcanvas" aria-label="Cerrar menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <nav aria-label="Móvil">
+        <a href="#generador" data-bs-dismiss="offcanvas">Generador</a>
+        <a href="#como-funciona" data-bs-dismiss="offcanvas">Cómo funciona</a>
+        <a href="#usos" data-bs-dismiss="offcanvas">Usos</a>
+        <a href="#familia" data-bs-dismiss="offcanvas">Familia</a>
+      </nav>
+      <a class="btn btn-gold" href="https://resendiz1.github.io/juanpancho-s/">Visitar JuanPancho's</a>
+      <a class="btn btn-ghost" href="https://wa.me/522381501369?text=Hola%20JuanPancho%27s%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20generador%20de%20QR.">Cotizar por WhatsApp</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="row align-items-center gy-5 hero-grid">
+          <div class="col-lg-6 hero-copy">
+            <p class="kicker kicker-live"><span class="lamp" aria-hidden="true"></span>En línea · Sin registro</p>
+            <h1>Códigos QR que <span class="hl">conectan</span><br>con tu negocio.</h1>
+            <p class="lede">Convierte cualquier texto, enlace o dato en un código QR listo para compartir, imprimir o pegar en tu local.</p>
+            <div class="hero-cta">
+              <a class="btn btn-gold btn-lg" href="#generador">Crear mi QR</a>
+              <a class="btn btn-ghost btn-lg" href="#como-funciona">Cómo funciona</a>
+            </div>
+            <p class="mono-note"><span class="lamp" aria-hidden="true"></span>Generación local · Descarga PNG y SVG</p>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-visual">
+              <div class="hv-board">
+                <div class="hv-grid" aria-hidden="true"></div>
+                <span class="hv-lamp hv-lamp-a" aria-hidden="true"><i></i>GENERADOR QR</span>
+                <span class="hv-lamp hv-lamp-b" aria-hidden="true"><i></i>LISTO PARA ESCANEAR</span>
+                <div class="hv-halo hv-halo-a" aria-hidden="true"></div>
+                <div class="hv-halo hv-halo-b" aria-hidden="true"></div>
+                <div class="hero-qr-card">
+                  <div class="hero-qr-head">
+                    <span class="hero-qr-title"><span class="lamp lamp-lit" aria-hidden="true"></span>JUANPANCHO'S QR</span>
+                    <span class="live-tag"><i></i>LIVE</span>
+                  </div>
+                  <div class="hero-qr-frame">
+                    <canvas id="heroQr" role="img" aria-label="Código QR de ejemplo con el enlace al sitio de JuanPancho's"></canvas>
+                  </div>
+                  <div class="hero-qr-meta">
+                    <span>URL</span>
+                    <span>512 PX</span>
+                    <span>NIVEL M</span>
+                  </div>
+                </div>
+                <span class="hero-pill hero-pill-a" aria-hidden="true">TEXTO</span>
+                <span class="hero-pill hero-pill-b" aria-hidden="true">WI-FI</span>
+                <span class="hero-pill hero-pill-c" aria-hidden="true">WHATSAPP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>Enlaces</span><i></i><span>WhatsApp</span><i></i><span>Wi-Fi</span><i></i><span>Contactos</span><i></i><span>Menús digitales</span><i></i>
+          <span>Enlaces</span><i></i><span>WhatsApp</span><i></i><span>Wi-Fi</span><i></i><span>Contactos</span><i></i><span>Menús digitales</span><i></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="section generator-section" id="generador">
+      <div class="container">
+        <header class="sec-head">
+          <p class="kicker"><span class="rule-dot" aria-hidden="true"></span>Generador</p>
+          <h2>Tu texto, listo para escanear.</h2>
+          <p class="sec-lede">Escribe, ajusta el estilo y descarga. El QR se genera directamente en tu navegador.</p>
+        </header>
+
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-6">
+            <div class="generator-panel">
+              <form id="qrForm" novalidate>
+                <div class="field">
+                  <div class="field-head">
+                    <label for="qrText">Contenido del QR</label>
+                    <span class="char-count"><span id="charCount">0</span> / 2000</span>
+                  </div>
+                  <textarea id="qrText" class="form-control jp-input" rows="5" maxlength="2000" spellcheck="false" placeholder="Escribe una URL, un mensaje, datos de Wi-Fi o cualquier texto..." aria-describedby="qrTextError"></textarea>
+                  <p class="field-error" id="qrTextError" hidden>Escribe un texto para generar tu código QR.</p>
+                </div>
+
+                <div class="quick-row">
+                  <span class="quick-label">Ejemplos</span>
+                  <button class="chip" type="button" data-example="url">URL</button>
+                  <button class="chip" type="button" data-example="whatsapp">WhatsApp</button>
+                  <button class="chip" type="button" data-example="wifi">Wi-Fi</button>
+                  <button class="chip" type="button" data-example="email">Correo</button>
+                  <button class="chip" type="button" data-example="vcard">Contacto</button>
+                </div>
+
+                <div class="row g-3 controls">
+                  <div class="col-sm-6">
+                    <div class="field">
+                      <div class="field-head">
+                        <label for="qrSize">Tamaño</label>
+                        <output class="field-value" id="qrSizeOut" for="qrSize">512 px</output>
+                      </div>
+                      <input type="range" class="form-range jp-range" id="qrSize" min="256" max="1200" step="32" value="512">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="field">
+                      <label for="qrEcl">Corrección de errores</label>
+                      <select class="form-select jp-input" id="qrEcl">
+                        <option value="L">L — Baja (7%)</option>
+                        <option value="M" selected>M — Media (15%)</option>
+                        <option value="Q">Q — Alta (25%)</option>
+                        <option value="H">H — Máxima (30%)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div class="field">
+                      <label for="qrDark">Color del QR</label>
+                      <div class="color-control">
+                        <input type="color" class="form-control form-control-color jp-color" id="qrDark" value="#0B0D0E" title="Color de los módulos del QR">
+                        <span class="color-hex" id="qrDarkHex">#0B0D0E</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div class="field">
+                      <label for="qrLight">Fondo</label>
+                      <div class="color-control">
+                        <input type="color" class="form-control form-control-color jp-color" id="qrLight" value="#FFF2C2" title="Color de fondo del QR">
+                        <span class="color-hex" id="qrLightHex">#FFF2C2</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="field">
+                      <div class="field-head">
+                        <label for="qrMargin">Margen</label>
+                        <output class="field-value" id="qrMarginOut" for="qrMargin">2 módulos</output>
+                      </div>
+                      <input type="range" class="form-range jp-range" id="qrMargin" min="0" max="8" step="1" value="2">
+                    </div>
+                  </div>
+                </div>
+
+                <p class="qr-contrast" id="qrContrast" hidden></p>
+
+                <div class="form-actions">
+                  <button class="btn btn-gold btn-lg" type="submit">Generar QR</button>
+                  <button class="btn btn-ghost btn-lg" type="button" id="qrReset">Limpiar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="qr-stage" id="qrStage">
+              <div class="stage-top">
+                <span class="stage-label"><span class="lamp lamp-lit" aria-hidden="true"></span>PREVIEW</span>
+                <span class="stage-status" id="qrStatus" role="status" aria-live="polite">Esperando contenido</span>
+              </div>
+
+              <div class="qr-viewport">
+                <div class="qr-frame">
+                  <span class="corner corner-tl" aria-hidden="true"></span>
+                  <span class="corner corner-tr" aria-hidden="true"></span>
+                  <span class="corner corner-bl" aria-hidden="true"></span>
+                  <span class="corner corner-br" aria-hidden="true"></span>
+                  <div class="qr-canvas-wrap">
+                    <canvas id="qrCanvas" role="img" aria-label="Vista previa del código QR generado"></canvas>
+                    <div class="qr-empty" id="qrEmpty">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <path d="M14 14h3v3h-3zM20 14h1M14 20h3M20 18v3"/>
+                      </svg>
+                      <p>Escribe un texto o elige un ejemplo para ver tu QR aquí.</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="stage-chip stage-chip-a" aria-hidden="true"><span class="lamp"></span>QR</span>
+                <span class="stage-chip stage-chip-b" id="qrMeta">—</span>
+              </div>
+
+              <p class="qr-encoded" id="qrEncoded">Sin contenido todavía.</p>
+
+              <div class="qr-actions">
+                <button class="btn btn-gold" type="button" id="downloadPng" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                  PNG
+                </button>
+                <button class="btn btn-ghost" type="button" id="downloadSvg" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                  SVG
+                </button>
+                <button class="btn btn-ghost" type="button" id="copyQr" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Copiar
+                </button>
+              </div>
+              <p class="qr-hint">Todo se genera en tu dispositivo. Nada se envía a un servidor.</p>
+            </div>
+          </div>
+        </div>
+
+        <noscript><p class="noscript-note">Este generador necesita JavaScript para funcionar. Actívalo en tu navegador o escríbenos por WhatsApp al 238 150 1369.</p></noscript>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="como-funciona">
+      <div class="container">
+        <header class="sec-head">
+          <p class="kicker"><span class="rule-dot" aria-hidden="true"></span>Así de simple</p>
+          <h2>De tu texto a un QR en tres pasos.</h2>
+          <p class="sec-lede">Sin cuentas, sin instalaciones y sin enviar tus datos a ningún lado.</p>
+        </header>
+        <div class="steps-3">
+          <article class="step">
+            <span class="step-num">01</span>
+            <h3>Escribe tu contenido</h3>
+            <p>Pega un enlace, escribe un mensaje o usa uno de los ejemplos rápidos.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">02</span>
+            <h3>Ajusta el estilo</h3>
+            <p>Elige tamaño, colores, margen y el nivel de corrección de errores.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">03</span>
+            <h3>Descarga y comparte</h3>
+            <p>Guarda tu QR en PNG o SVG, o cópialo para pegarlo donde quieras.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="usos">
+      <div class="container">
+        <header class="sec-head">
+          <p class="kicker"><span class="rule-dot" aria-hidden="true"></span>Casos de uso</p>
+          <h2>Un QR para cada idea.</h2>
+          <p class="sec-lede">Estos son algunos ejemplos. Selecciona uno para cargarlo en el generador.</p>
+        </header>
+        <div class="use-grid">
+          <article class="use-card">
+            <div class="use-top">
+              <span class="use-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
+              </span>
+              <span class="lamp lamp-lit" aria-hidden="true"></span>
+            </div>
+            <h3>Enlaces y sitios web</h3>
+            <p>Comparte tu página, catálogo o menú digital sin escribir URLs largas.</p>
+            <button class="use-btn" type="button" data-example="url">Usar ejemplo <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="use-card">
+            <div class="use-top">
+              <span class="use-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.9-.9L3 21l2-4.9A8.4 8.4 0 1 1 21 11.5z"/></svg>
+              </span>
+              <span class="lamp lamp-lit" aria-hidden="true"></span>
+            </div>
+            <h3>WhatsApp directo</h3>
+            <p>Abre un chat con tu negocio y un mensaje listo para enviar.</p>
+            <button class="use-btn" type="button" data-example="whatsapp">Usar ejemplo <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="use-card">
+            <div class="use-top">
+              <span class="use-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><path d="M12 19.5h.01"/><path d="M2 9a15 15 0 0 1 20 0"/></svg>
+              </span>
+              <span class="lamp lamp-lit" aria-hidden="true"></span>
+            </div>
+            <h3>Conexión Wi-Fi</h3>
+            <p>Permite que tus clientes se conecten a tu red sin dictar la contraseña.</p>
+            <button class="use-btn" type="button" data-example="wifi">Usar ejemplo <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="use-card">
+            <div class="use-top">
+              <span class="use-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+              </span>
+              <span class="lamp lamp-lit" aria-hidden="true"></span>
+            </div>
+            <h3>Correo electrónico</h3>
+            <p>Lleva a tus clientes directo a un correo con asunto ya preparado.</p>
+            <button class="use-btn" type="button" data-example="email">Usar ejemplo <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="use-card">
+            <div class="use-top">
+              <span class="use-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+              </span>
+              <span class="lamp lamp-lit" aria-hidden="true"></span>
+            </div>
+            <h3>Texto libre</h3>
+            <p>Comparte instrucciones, mensajes, códigos o cualquier texto corto.</p>
+            <button class="use-btn" type="button" data-example="text">Usar ejemplo <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="use-card">
+            <div class="use-top">
+              <span class="use-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 9h4M15 13h4M7 16h10"/></svg>
+              </span>
+              <span class="lamp lamp-lit" aria-hidden="true"></span>
+            </div>
+            <h3>Tarjeta de contacto</h3>
+            <p>Guarda tus datos en la agenda del cliente con un solo escaneo.</p>
+            <button class="use-btn" type="button" data-example="vcard">Usar ejemplo <span aria-hidden="true">→</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-band" id="familia">
+      <div class="container">
+        <div class="family-grid">
+          <div class="family-copy">
+            <p class="kicker kicker-live"><span class="lamp" aria-hidden="true"></span>Familia JuanPancho's</p>
+            <h2>Una herramienta más para tu negocio.</h2>
+            <p>Este generador es parte de JuanPancho's: soporte técnico, puntos de venta y desarrollo web para negocios, empresas y emprendedores.</p>
+            <div class="family-actions">
+              <a class="btn btn-gold btn-lg" href="https://resendiz1.github.io/juanpancho-s/">Visitar el sitio principal</a>
+              <a class="btn btn-ghost btn-lg" href="https://wa.me/522381501369?text=Hola%20JuanPancho%27s%2C%20quiero%20una%20cotizaci%C3%B3n.">Cotizar por WhatsApp</a>
+            </div>
+          </div>
+          <div class="medida-code" aria-hidden="true">
+            <span class="code-line">&lt;<span class="c">juanpancho's</span>&gt;</span>
+            <span class="code-line code-indent">&lt;<span class="c">qr</span> <span class="c2">generador</span> /&gt;</span>
+            <span class="code-line code-indent">&lt;<span class="c">tu</span> <span class="c2">negocio</span> /&gt;</span>
+            <span class="code-line code-indent">&lt;<span class="c">listo</span> <span class="c2">para escanear</span> /&gt;</span>
+            <span class="code-line">&lt;/<span class="c">juanpancho's</span>&gt;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="cta">
+      <div class="container">
+        <p class="kicker kicker-live"><span class="lamp" aria-hidden="true"></span>¿Listo?</p>
+        <h2>Tu próximo QR está a un texto de distancia.</h2>
+        <p class="cta-sub">Genera, personaliza y descarga. Sin costo y sin registro.</p>
+        <div class="cta-buttons">
+          <a class="btn btn-gold btn-xl" href="#generador">Crear mi código QR</a>
+          <a class="btn btn-ghost btn-xl" href="https://wa.me/522381501369?text=Hola%20JuanPancho%27s%2C%20necesito%20ayuda%20con%20un%20QR.">Necesito ayuda</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="logo-lockup">
+          <img class="logo-mark" src="assets/logo.svg" alt="" width="46" height="46">
+          <div class="logo-text">
+            <span class="logo-name"><span class="lt">&lt;</span>Juan Pancho's<span class="rt"> /&gt;</span></span>
+            <span class="logo-desc">Generador QR</span>
+            <span class="logo-rule" aria-hidden="true"></span>
+          </div>
+        </div>
+        <p>Soluciones tecnológicas para tu negocio: soporte técnico, puntos de venta y desarrollo web.</p>
+      </div>
+      <nav class="footer-col" aria-label="Herramienta">
+        <h3>Herramienta</h3>
+        <a href="#generador">Generador QR</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#usos">Casos de uso</a>
+        <a href="#familia">Familia JuanPancho's</a>
+      </nav>
+      <nav class="footer-col" aria-label="Sitio">
+        <h3>Sitio</h3>
+        <a href="https://resendiz1.github.io/juanpancho-s/">Sitio principal</a>
+        <a href="https://wa.me/522381501369">Soporte por WhatsApp</a>
+        <a href="https://www.instagram.com/juanpanchos_tehuacan/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61577993078029" target="_blank" rel="noopener">Facebook</a>
+      </nav>
+      <div class="footer-col footer-contact">
+        <h3>Contacto</h3>
+        <a href="https://wa.me/522381501369">WhatsApp 238 150 1369</a>
+        <a href="tel:+522211959921">Teléfono 221 195 9921</a>
+        <span class="footer-location">Tehuacán, Puebla</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 JuanPancho's · Generador QR</span>
+        <span>Sitio desarrollado por JuanPancho's</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/522381501369?text=Hola%20JuanPancho%27s%2C%20quiero%20informaci%C3%B3n." aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.8 0-1.6-.1-2.4-.4-.3-.1-.6 0-.9.2l-1 1c-.1.1-.2.1-.3.1-.4-.1-1-.5-1.7-1.2-.9-.9-1.5-1.7-1.7-2.1-.1-.2-.1-.4 0-.5l1.1-1.1c.3-.3.4-.6.2-.9-.4-.8-.6-1.6-.6-2.4 0-.4-.3-.7-.7-.7H7.4c-.4 0-.7.3-.7.7C6.6 12.9 11.1 17.4 16.6 17.4c.4 0 .7-.3.7-.7v-1.6c0-.4-.3-.7-.8-.7z"/></svg>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
